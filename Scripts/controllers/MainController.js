@@ -6,11 +6,11 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
 		console.log(data.Search[0].imdbID);
 		$scope.titles = [];
 		for(var i = 0; i < data.Search.length; i++){
-			get_title(data.Search[i].imdbID).then(function(response){
-				console.log(response.data);
-				
+			$scope.title = get_title(data.Search[i].imdbID).then(function(response){
+				return(response.data);
 			});
-			$scope.titles.push(get_title(data.Search[i].imdbID));
+			console.log($scope.title)
+			$scope.titles.push($scope.title);
 		}
 
 		console.log($scope.titles);
