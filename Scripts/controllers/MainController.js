@@ -1,4 +1,4 @@
-app.controller('MainController', ['$scope', 'movies', '$http', '$rootScope' , function($scope, movies, $http, $rootScope) {
+app.controller('MainController', ['$scope', 'movies', '$http', function($scope, movies, $http) {
 	$scope.titles = {};
 
 	movies.success(function(data){
@@ -6,7 +6,10 @@ app.controller('MainController', ['$scope', 'movies', '$http', '$rootScope' , fu
 		console.log(data.Search[0].imdbID);
 		$scope.titles = [];
 		for(var i = 0; i < data.Search.length; i++){
-			console.log(data.Search[i].imdbID);
+			get_title(data.Search[i].imdbID).then(function(response){
+				console.log(response.data);
+				
+			});
 			$scope.titles.push(get_title(data.Search[i].imdbID));
 		}
 
@@ -14,12 +17,11 @@ app.controller('MainController', ['$scope', 'movies', '$http', '$rootScope' , fu
 	});
 
 	function get_title(id){
-		$http.get('http://www.omdbapi.com/?i=' + id + '&r=json') 
+		var promise = $http.get('http://www.omdbapi.com/?i=' + id + '&r=json') 
             .success(function(data) { 
-              $scope.title = data;
-              console.log($scope.title);
-              return this.data;
+              return(data);
             });	
+        return promise;
 	}
 
  	$scope.search = function(){
