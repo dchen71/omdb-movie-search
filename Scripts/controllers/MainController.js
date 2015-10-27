@@ -20,23 +20,15 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
 	}
 
  	$scope.search = function(){
- 		console.log($scope.movie);
- 		console.log(getMovies($scope.movie.title));
+ 		$scope.titles = [];
  		$scope.movies = getMovies($scope.movie.title);
- 		console.log($scope.movies);
  		Promise.resolve($scope.movies).then(function(value){
- 			console.log(value.data.Search);
  			for(var i = 0; i < value.data.Search.length; i++){
  				$scope.title = get_title(value.data.Search[i].imdbID).then(function(response){
- 					console.log(response.data);
  					return(response.data);
  				});
- 				console.log($scope.title);
  				$scope.titles.push($scope.title);
  			}
- 			
- 			console.log($scope.titles);
- 			console.log($scope.titles[0]);
  		})
  	};
 }]);
