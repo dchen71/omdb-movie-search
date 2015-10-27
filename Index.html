@@ -16,6 +16,7 @@
   <header class="page-header">
     <h3>OMDB Movie Search</h3>
   </header>
+  <!-- MainController for Ajax -->
   <div class="container-fluid text-center col-md-12 movies" ng-controller="MainController">
 
     <section class="col-md-4 col-md-offset-4 well" >
@@ -26,6 +27,7 @@
       </form>
     </section>
 
+    <!-- Loops based on title information from ajax -->
     <div ng-repeat="movie in titles">
       <div class="col-md-4 col-md-offset-4 well movie">
           <section>
@@ -62,14 +64,8 @@
   <!-- Modules -->
   <script type="text/javascript" src="Scripts/app.js"></script>
 
-  <!-- Services -->
-  <script type="text/javascript" src="Scripts/services/search.js"></script>
-
   <!-- Controllers -->
   <script type="text/javascript" src="Scripts/controllers/MainController.js"></script>
  
-  <!-- Helpers -->
-  <script type="text/javascript" src="Scripts/ajax.js"></script>
-
   </body>
 </html>
