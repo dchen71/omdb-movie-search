@@ -2,6 +2,7 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
 	$scope.titles = [];
 
 	movies.success(function(data){
+		console.log($scope.movie);
 		$scope.movies = data.Search;
 		console.log(data.Search[0].imdbID);
 		$scope.titles = [];
@@ -27,7 +28,8 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
 	}
 
  	$scope.search = function(){
- 		search.preventDefault();
+ 		console.log($scope.movie);
+ 		console.log($scope.movies);
  		return $scope.movies;
  	};
 }]);
