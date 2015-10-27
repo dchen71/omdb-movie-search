@@ -24,27 +24,19 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
  		console.log(getMovies($scope.movie.title));
  		$scope.movies = getMovies($scope.movie.title);
  		console.log($scope.movies);
-
- 		$scope.movies.then(function(response){
- 			console.log(response);
- 		});
-
-		movies.success(function(data){
-			console.log($scope.movie);
-			$scope.movies = data.Search;
-			console.log(data.Search[0].imdbID);
-			$scope.titles = [];
-			for(var i = 0; i < data.Search.length; i++){
-				$scope.title = get_title(data.Search[i].imdbID).then(function(response){
-					console.log(response.data);
-					return(response.data);
-				});
-				console.log($scope.title);
-				$scope.titles.push($scope.title);
-			}
-	
-			console.log($scope.titles);
-			console.log($scope.titles[0]);
- 		});
+ 		Promise.resolve($scope.movies).then(function(value){
+ 			console.log(value.data.Search);
+ 			for(var i = 0; i < value.data.Search.length; i++){
+ 				$scope.title = get_title(value.data.Search[i].imdbID).then(function(response){
+ 					console.log(response.data);
+ 					return(response.data);
+ 				});
+ 				console.log($scope.title);
+ 				$scope.titles.push($scope.title);
+ 			}
+ 			
+ 			console.log($scope.titles);
+ 			console.log($scope.titles[0]);
+ 		})
  	};
 }]);
