@@ -1,5 +1,5 @@
 app.controller('MainController', ['$scope', 'movies', '$http', function($scope, movies, $http) {
-	$scope.titles = {};
+	$scope.titles = [];
 
 	movies.success(function(data){
 		$scope.movies = data.Search;
@@ -7,13 +7,15 @@ app.controller('MainController', ['$scope', 'movies', '$http', function($scope, 
 		$scope.titles = [];
 		for(var i = 0; i < data.Search.length; i++){
 			$scope.title = get_title(data.Search[i].imdbID).then(function(response){
+				console.log(response.data);
 				return(response.data);
 			});
-			console.log($scope.title)
+			console.log($scope.title);
 			$scope.titles.push($scope.title);
 		}
 
 		console.log($scope.titles);
+		console.log($scope.titles[0]);
 	});
 
 	function get_title(id){

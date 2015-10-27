@@ -36,29 +36,29 @@
   </div>
 
   <div ng-controller="MainController">
-    <div ng-repeat="movie in movies">
+    <div ng-repeat="movie in titles">
       <div class="col-md-4 col-md-offset-4 well movie">
           <section>
              <header class="content-header">
-                <h2> {{movie.Title}} </h2> 
+                <h2> {{movie.$$state.value.Title}} </h2> 
                 <hr> 
-                <p class="col-md-4"><strong>Year:</strong> <em> {{movie.Year}}</em></p>
-                <p class="col-md-4"><strong>Runtime:</strong> <em> {{movie.runtime}} </em></p>
-                <p class="col-md-4"><strong>Rating:</strong> <em> {{movie.rating}} </em></p>
+                <p class="col-md-4"><strong>Year:</strong> <em> {{movie.$$state.value.Year}}</em></p>
+                <p class="col-md-4"><strong>Runtime:</strong> <em> {{movie.$$state.value.Runtime}} </em></p>
+                <p class="col-md-4"><strong>Rating:</strong> <em> {{movie.$$state.value.imdbRating}} </em></p>
               </header>
   
             <div>
                 <aside class="pull-left text-left col-md-5 pic-info"> 
-                  <img ng-src="{{poster}}">
-                  <p class="col-md-offset-2"><strong>imdbRating:</strong> {{movie.rating}}</p>
+                  <img ng-src="{{movie.$$state.value.Poster}}">
+                  <p class="col-md-offset-2"><strong>imdbRating:</strong> {{movie.$$state.value.Rating}}</p>
                 </aside>
         
   
-              <div class="text-left">' + 
-                <p><strong>Plot:</strong> {{movie.plot}} </p>
-                <p><strong>Genre:</strong> {{movie.genre}} </p>
-                <p><strong>Language:</strong> {{movie.language}} </p>
-                <p><strong>Awards:</strong> {{movie.awards}}</p>
+              <div class="text-left">
+                <p><strong>Plot:</strong> {{movie.$$state.value.Plot}} </p>
+                <p><strong>Genre:</strong> {{movie.$$state.value.Genre}} </p>
+                <p><strong>Language:</strong> {{movie.$$state.value.Language}} </p>
+                <p><strong>Awards:</strong> {{movie.$$state.value.Awards}}</p>
               </div>
           </div>
         </section>
